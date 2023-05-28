@@ -4,7 +4,7 @@ const RootLayout = () => {
 	return (
 		<>
         {/* <Navbar /> */}
-			<div style={{ minHeight: 'calc(100vh - 80px)', position: 'relative' }}>
+			<div className='font-manrope' style={{ minHeight: 'calc(100vh - 80px)', position: 'relative' }}>
 				<Outlet />
 			</div>
 			

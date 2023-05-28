@@ -2,32 +2,37 @@ import { createBrowserRouter, createRoutesFromElements, Navigate, Route, Outlet 
 import RootLayout from '../../layouts/RootLayout';
 import ErrorElement from "../../layouts/ErrorElement";
 import Home from '../../pages/Home/Home';
+import MainAuthForm from '../../pages/Auth/MainAuthForm';
+import Login from '../../pages/Auth/Login';
 const userAuthed = () => {
-    return new Promise((resolve, reject) => {
-        resolve('some string');
-    });
 
-    // The Function To use in case of Auth system is established
 	if (!localStorage.getItem('userToken')) {
+		
 		throw new Error('You are not Authenticated, Try to Login Again');
 	} else {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			resolve('some string');
 		});
 	}
 };
 
-const router = createBrowserRouter(
+const Router = createBrowserRouter(
 	createRoutesFromElements([
 		<>
+		{/* login routes */}
+		<Route path="" element={<MainAuthForm />} id="login">
+				<Route path="login" element={<Login />} />
+				{/* <Route path="reset-password" element={<ChangePassword />} /> */}
+				{/* <Route path="forget-password" element={<ForgetPassword />} /> */}
+			</Route>
 			<Route
 				path=""
 				element={<RootLayout />}
 				id="page_content"
 				loader={userAuthed}
-				errorElement={<ErrorElement />}
+				errorElement={<Navigate to="/login" />}
 			>
-				 <Route index element={<Home />} id="home" />
+				<Route index element={<Home />} id="home" />
 				{/*<Route path="rounds" element={<ActivitiesLayout />}>
 					<Route index element={<Rounds />} />
 					<Route path="activities/:slug?/:type?" element={<Activities />} />
@@ -37,4 +42,4 @@ const router = createBrowserRouter(
 		</>,
 	]),
 );
-export default router;
+export default Router;
