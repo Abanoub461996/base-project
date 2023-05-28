@@ -2,7 +2,7 @@ import axios from 'axios';
 import router from '../Routes/Routes';
 
 export const axiosInstance = axios.create({
-	baseURL: process.env.REACT_APP_DATABASE_URL,
+	baseURL: import.meta.env.VITE_DATABASE_URL,
 });
 
 axiosInstance.interceptors.request.use(

@@ -4,10 +4,11 @@ import ErrorElement from "../../layouts/ErrorElement";
 import Home from '../../pages/Home/Home';
 import MainAuthForm from '../../pages/Auth/MainAuthForm';
 import Login from '../../pages/Auth/Login';
-const userAuthed = () => {
+import ForgotPassword from '../../pages/Auth/ForgotPassword';
 
+
+const userAuthed = () => {
 	if (!localStorage.getItem('userToken')) {
-		
 		throw new Error('You are not Authenticated, Try to Login Again');
 	} else {
 		return new Promise((resolve) => {
@@ -23,7 +24,7 @@ const Router = createBrowserRouter(
 		<Route path="" element={<MainAuthForm />} id="login">
 				<Route path="login" element={<Login />} />
 				{/* <Route path="reset-password" element={<ChangePassword />} /> */}
-				{/* <Route path="forget-password" element={<ForgetPassword />} /> */}
+				<Route path="forgot-password" element={<ForgotPassword />} />
 			</Route>
 			<Route
 				path=""

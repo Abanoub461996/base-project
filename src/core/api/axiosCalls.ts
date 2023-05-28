@@ -1,3 +1,4 @@
+import { UserCredentials } from '../interfaces/userInterface';
 import axiosInstance from './axiosInstance';
 
 // ------------------------------------------------------------------------------------------------ //
@@ -7,7 +8,7 @@ export const logout = async () => {
 	return res;
 };
 
-export const userLogin = async (data: { email: string; password: string }): Promise<any> => {
+export const userLogin = async (data: UserCredentials): Promise<any> => {
 	const res = await axiosInstance.post('/login', data);
 	return res.data;
 };

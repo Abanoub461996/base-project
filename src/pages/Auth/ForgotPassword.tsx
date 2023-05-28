@@ -1,6 +1,6 @@
 // Modularity
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -13,14 +13,12 @@ import { userLogin } from '../../core/api/axiosCalls';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
-import eyeImg from "../../assets/icons/eye.svg";
-
 // Styles
 import { LoginConatiner } from './Auth.style';
 import { useTranslation } from 'react-i18next';
 
 
-const Login = () => {
+const ForgotPassword = () => {
 	const navigate = useNavigate();
 	const { t } = useTranslation();
 
@@ -81,7 +79,6 @@ const Login = () => {
 	const getFormErrorMessage = (name: string) => {
 		return errors[`${name}`] && <p className="p-error">{JSON.stringify(errors[`${name}`]?.message).slice(1,-1)}</p>;
 	};
-	const [showPassword, setShowPassword] = useState(false);
 
 	return (
 		<LoginConatiner onSubmit={handleSubmit(onSubmit)}>
@@ -104,34 +101,6 @@ const Login = () => {
 					/>
 					{getFormErrorMessage('email')}
 				</div>
-				<div className="form__input flex flex-col ">
-					<label className={`input__label`} htmlFor="password">
-						{t('field_label', { field: 'Password' })}
-					</label>
-					<div className="relative">
-
-					<InputText
-						type={showPassword ? 'text' : 'password'}
-						{...register('password')}
-						style={{ color: '#616161', opacity: '0.71' }}
-						id="password"
-						className={`input__field w-full ${errors['password'] ? 'p-invalid' : ''}`}
-						placeholder={t('field_placeholder', { field: 'Password' })}
-					/>
-					<button
-						type="button"
-						tabIndex={-1}
-						onClick={() => setShowPassword(!showPassword)}
-						className="eye_btn absolute right-5 bottom-[calc(50%-1em)]"
-					>
-						<img src={eyeImg} alt="eye" />
-					</button>
-					</div>
-					{getFormErrorMessage('password')}
-				</div>
-				<Link to="/forget-password" className="forgetPass">
-					{`${t('Forgot Password')}`}
-				</Link>
 			</div>
 
 			<Button
@@ -145,4 +114,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default ForgotPassword;
