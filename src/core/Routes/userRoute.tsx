@@ -93,7 +93,7 @@ export const authRoutes: RouteObject[] = [
 		path: routeModel.login,
 		element: (
 			<AuthenticationRoute>
-				<>login</>
+				<Home/>
 			</AuthenticationRoute>
 		),
 	},
